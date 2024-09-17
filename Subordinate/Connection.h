@@ -6,20 +6,16 @@
 #include <ws2tcpip.h>
 #include <tchar.h>
 #include<cstring>
-#include"MusicPlayer.h"
 
 class Connection {
 public:
-    Connection(int port, LPCWSTR ipAddress,MusicPlayer player);
+    Connection(int port, LPCWSTR ipAddress);
     int init();
-    void socketAccept();
-    void Send(const std::string message);
-
+    void startListening();
 private:
-    SOCKET _serverSocket;
-    SOCKET _acceptSocket;
     LPCWSTR _ipAddress;
-    MusicPlayer _player;
+    SOCKET _clientSocket;
+    SOCKET _acceptSocket;
     int _port;
 };
 

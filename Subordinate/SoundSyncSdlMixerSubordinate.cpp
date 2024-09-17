@@ -30,16 +30,10 @@ int main(int argc, char* argv[]) {
     //std::cout << "Serialized Message: " << serializedData2<< std::endl;
     //std::cout << "Deserialized Message: " << deserializedMessage2.GetType() << deserializedMessage2.getPath() << std::endl;
 
-    //SyncMessage Sincro(1);
-    //std::string serializedData = Sincro.Serialize();
-    //SyncMessage sincro2 = SyncMessage::Deserialize(serializedData);
-    //std::cout << "Serialized Message: " << serializedData << std::endl;
-    //std::cout << "Deserialized Message Type: " << sincro2.GetType()<<std::endl<<"RealTime : " << sincro2.getRealTime() << std::endl;
-    MusicPlayer player;
-    Connection connectionMaster(55555, L"127.0.0.1",player);
-    connectionMaster.init();
-    connectionMaster.socketAccept();
-    connectionMaster.Send("Mesaj");
+    Connection connectionSubordinate(55555, L"127.0.0.1");
+    connectionSubordinate.init();
+    connectionSubordinate.startListening();
+    
 
 	return 0;
 

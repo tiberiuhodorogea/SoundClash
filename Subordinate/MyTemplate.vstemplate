@@ -1,0 +1,35 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>SoundSyncSdlMixerSubordinate</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>VC</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>SoundSyncSdlMixerSubordinate</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="SoundSyncSdlMixer.vcxproj" File="SoundSyncSdlMixer.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">SoundSyncSdlMixer.vcxproj.filters</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="LoadMessage.cpp">LoadMessage.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Message.cpp">Message.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="SoundSyncSdlMixer.cpp">SoundSyncSdlMixer.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="MusicPlayer.cpp">MusicPlayer.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Connection.cpp">Connection.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="SyncMessage.cpp">SyncMessage.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="ThreadPool.cpp">ThreadPool.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Connection.h">Connection.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="LoadMessage.h">LoadMessage.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Message.h">Message.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="SyncMessage.h">SyncMessage.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Utils.h">Utils.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="MusicPlayer.h">MusicPlayer.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="ThreadPool.h">ThreadPool.h</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
