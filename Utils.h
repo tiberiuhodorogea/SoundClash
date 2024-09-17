@@ -1,4 +1,4 @@
 #pragma once
 enum MessageType {
-	Load, Pause, Stop, Sync, Exit,Play
+	Empty,Load, Pause, Stop, Sync, Exit,Play,Resume
 };

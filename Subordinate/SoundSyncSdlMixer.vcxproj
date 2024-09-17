@@ -143,11 +143,13 @@
     <ClCompile Include="SoundSyncSdlMixerSubordinate.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="MessageInterpreter.cpp" />
     <ClCompile Include="SyncMessage.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Connection.h" />
+    <ClInclude Include="MessageInterpreter.h" />
     <ClInclude Include="LoadMessage.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="SyncMessage.h" />

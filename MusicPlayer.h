@@ -15,6 +15,8 @@ public:
     void playMusic(int loops = -1);
     void setMusicPosition(double seconds);
     double getMusicPosition();
+    void pauseMusic();
+    void ResumeMusic();
 
 private:
     Mix_Music* music;

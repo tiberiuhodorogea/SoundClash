@@ -6,17 +6,20 @@
 #include <ws2tcpip.h>
 #include <tchar.h>
 #include<cstring>
-
+#include"MessageInterpreter.h"
 class Connection {
 public:
-    Connection(int port, LPCWSTR ipAddress);
+    Connection(int port, LPCWSTR ipAddress, MessageInterpreter* interpreter);
     int init();
     void startListening();
+    
 private:
+    MessageInterpreter* _interpreter;
     LPCWSTR _ipAddress;
     SOCKET _clientSocket;
     SOCKET _acceptSocket;
     int _port;
+    
 };
 
 

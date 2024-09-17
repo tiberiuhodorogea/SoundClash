@@ -14,6 +14,8 @@ public:
     void loadMusic(const std::string& filePath);
     void playMusic(int loops = -1);
     void setMusicPosition(double seconds);
+    void pauseMusic();
+    void ResumeMusic();
     double getMusicPosition();
 
 private:

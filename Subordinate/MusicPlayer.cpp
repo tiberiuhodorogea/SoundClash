@@ -45,6 +45,16 @@ void MusicPlayer::setMusicPosition(double seconds) {
     }
 }
 
+void MusicPlayer::pauseMusic()
+{
+    Mix_PauseMusic();
+}
+
+void MusicPlayer::ResumeMusic()
+{
+    Mix_ResumeMusic();
+}
+
 double MusicPlayer::getMusicPosition()
 {
     return Mix_GetMusicPosition(music);

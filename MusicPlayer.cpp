@@ -50,5 +50,14 @@ double MusicPlayer::getMusicPosition()
     return Mix_GetMusicPosition(music);
         
 }
+void MusicPlayer::pauseMusic()
+{
+    Mix_PauseMusic();
+}
+
+void MusicPlayer::ResumeMusic()
+{
+    Mix_ResumeMusic();
+}
 
 // Mix_OpenAudioDevice schimbare device output

@@ -14,7 +14,7 @@
 #include"LoadMessage.h"
 #include"SyncMessage.h"
 #include"Connection.h"
-
+#include"MessageInterpreter.h"
 using namespace std::chrono_literals;
 
 int main(int argc, char* argv[]) {
@@ -29,8 +29,9 @@ int main(int argc, char* argv[]) {
     //LoadMessage deserializedMessage2 = LoadMessage::Deserialize(serializedData2);
     //std::cout << "Serialized Message: " << serializedData2<< std::endl;
     //std::cout << "Deserialized Message: " << deserializedMessage2.GetType() << deserializedMessage2.getPath() << std::endl;
-
-    Connection connectionSubordinate(55555, L"127.0.0.1");
+    MusicPlayer player;
+    MessageInterpreter interpreter(&player);
+    Connection connectionSubordinate(55555, L"127.0.0.1",&interpreter);
     connectionSubordinate.init();
     connectionSubordinate.startListening();
     

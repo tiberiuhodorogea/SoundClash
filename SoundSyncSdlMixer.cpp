@@ -14,15 +14,15 @@
 #include"LoadMessage.h"
 #include"SyncMessage.h"
 #include"Connection.h"
-
+#include <stdlib.h>
 using namespace std::chrono_literals;
 
 int main(int argc, char* argv[]) {
-	/*Message Message1(MessageType::Exit); 
-	std::string serializedData = Message1.Serialize();
-	Message deserializedMessage=Message::Deserialize(serializedData);
-	std::cout << "Serialized Message: " << serializedData << std::endl;
-	std::cout << "Deserialized Message: " << deserializedMessage.GetType() << std::endl;*/
+    /*Message Message1(MessageType::Exit);
+    std::string serializedData = Message1.Serialize();
+    Message deserializedMessage=Message::Deserialize(serializedData);
+    std::cout << "Serialized Message: " << serializedData << std::endl;
+    std::cout << "Deserialized Message: " << deserializedMessage.GetType() << std::endl;*/
 
     //LoadMessage Message2("");
     //std::string serializedData2 = Message2.Serialize();
@@ -35,11 +35,54 @@ int main(int argc, char* argv[]) {
     //SyncMessage sincro2 = SyncMessage::Deserialize(serializedData);
     //std::cout << "Serialized Message: " << serializedData << std::endl;
     //std::cout << "Deserialized Message Type: " << sincro2.GetType()<<std::endl<<"RealTime : " << sincro2.getRealTime() << std::endl;
+
+
     MusicPlayer player;
-    Connection connectionMaster(55555, L"127.0.0.1",player);
-    connectionMaster.init();
-    connectionMaster.socketAccept();
-    connectionMaster.Send("Mesaj");
+    //Connection connectionMaster(55555, L"127.0.0.1",player);
+    //connectionMaster.init();
+    //connectionMaster.socketAccept();
+
+    //LoadMessage message("path");
+    //std::string serializedData = message.Serialize();
+    //connectionMaster.Send(serializedData);
+    Message defaultMessage(Empty);
+    LoadMessage defautlLoadMessage("defaultPath");
+    SyncMessage defaultSyncMessage(0.0);
+    std::string command;
+    while (std::cin >> command)
+    {
+        if (command == "load")
+        {
+            std::cin >> command;
+            player.loadMusic(command);
+            
+        }
+        else if (command == "play")
+        {
+            player.playMusic(-1);
+        }
+        else if(command == "stop")
+        {
+            player.pauseMusic();
+            player.setMusicPosition(0);
+
+        }
+        else if (command == "pause")
+        {
+            player.pauseMusic();
+        }
+        else if (command == "exit")
+        {
+            exit(EXIT_SUCCESS);
+        }
+        else
+        {
+            std::cout << "Wrong command!" << std::endl;
+        }
+
+        
+    }
+    
 
 	return 0;
 

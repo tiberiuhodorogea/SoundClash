@@ -1,9 +1,11 @@
 #include "Connection.h"
 
-Connection::Connection(int port, LPCWSTR ipAddress)
+Connection::Connection(int port, LPCWSTR ipAddress, MessageInterpreter* interpreter)
 {
+    _interpreter = interpreter;
 	_port = port;
     _ipAddress = ipAddress;
+    
 }
 
 int Connection::init()
@@ -55,7 +57,7 @@ int Connection::init()
 
 void Connection::startListening()
 {
-    const int bufferSize = 1024;
+    const int bufferSize = 2024;
     char buffer[bufferSize];
     int bytesReceived;
 
@@ -82,7 +84,10 @@ void Connection::startListening()
     }
 
     // Construct a std::string from the buffer and the number of bytes received
-    std::cout<< std::string(buffer, bytesReceived);
+    //std::cout<< std::string(buffer, bytesReceived);
+    std::string(buffer);
+    _interpreter->interpretAndExecute(buffer);
+     
 }
 
 
