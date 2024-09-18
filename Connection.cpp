@@ -1,9 +1,10 @@
 #include "Connection.h"
 
-Connection::Connection(int port, LPCWSTR ipAddress)
+Connection::Connection(int port, LPCWSTR ipAddress,MusicPlayer player)
 {
 	_port = port;
 	_ipAddress = ipAddress;
+	_player = player;
 }
 
 int Connection::init()
@@ -17,6 +18,11 @@ int Connection::init()
 		std::cout << "The Winsock dll not found" << std::endl;
 		return 0;
 	}
+	else
+	{
+		std::cout << "The Winsock dll found!" << std::endl;
+		std::cout << "The status" << wsaData.szSystemStatus << std::endl;
+	}
 
 	_serverSocket = INVALID_SOCKET;
 	_serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -25,6 +31,10 @@ int Connection::init()
 		std::cout << "Error at socket(): " << WSAGetLastError() << std::endl;
 		WSACleanup();
 		return 0;
+	}
+	else
+	{
+		std::cout << "Socket() is OK!" << std::endl;
 	}
 
 	sockaddr_in service;
@@ -37,11 +47,19 @@ int Connection::init()
 		WSACleanup();
 		return 0;
 	}
+	else
+	{
+		std::cout << "bind() is OK!" << std::endl;
+	}
 	//Listen
 	if (listen(_serverSocket, 1) == SOCKET_ERROR)
 	{
 		std::cout << "listen(): Error listening on socket" << WSAGetLastError << std::endl;
 		return 0;
+	}
+	else
+	{
+		std::cout << "Listen(): is OK, I'm waiting for connections..." << std::endl;
 	}
 
 }
@@ -59,3 +77,21 @@ void Connection::socketAccept()
 		std::cout << "Connection Accepted" << std::endl;
 	}
 }
+
+void Connection::Send(const std::string message)
+{
+	int byteCount = send(_acceptSocket, message.c_str(), message.size(), 0);
+
+	if (byteCount == SOCKET_ERROR)
+	{
+		// If sending fails, print an error message
+		std::cerr << "Failed to send message. Error: " << WSAGetLastError() << std::endl;
+	}
+	else
+	{
+		// Confirm message has been sent
+		std::cout << "Message sent to client: " << message << std::endl;
+		std::cout << "Bytes sent: " << byteCount << std::endl;
+	}
+}
+

@@ -14,9 +14,9 @@ public:
     void loadMusic(const std::string& filePath);
     void playMusic(int loops = -1);
     void setMusicPosition(double seconds);
-    double getMusicPosition();
     void pauseMusic();
     void ResumeMusic();
+    double getMusicPosition();
 
 private:
     Mix_Music* music;
