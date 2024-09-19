@@ -72,12 +72,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\source\repos\SoundSyncSdlMixer\cereal-master\include;E:\source\repos\SoundSyncSdlMixer\SDL2_mixer-2.8.0\include;E:\source\repos\SoundSyncSdlMixer\SDL2-2.30.7\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\source\repos\SoundSyncSdlMixer\SDL2_mixer-2.8.0\lib\x64;E:\source\repos\SoundSyncSdlMixer\SDL2-2.30.7\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>cereal-master\include;SDL2_mixer-2.8.0\include;SDL2-2.30.7\include;$(IncludePath)</IncludePath>
+    <LibraryPath>SDL2_mixer-2.8.0\lib\x64;SDL2-2.30.7\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>E:\source\repos\SoundSyncSdlMixer\cereal-master\include;E:\source\repos\SoundSyncSdlMixer\SDL2_mixer-2.8.0\include;E:\source\repos\SoundSyncSdlMixer\SDL2-2.30.7\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\source\repos\SoundSyncSdlMixer\SDL2_mixer-2.8.0\lib\x64;E:\source\repos\SoundSyncSdlMixer\SDL2-2.30.7\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>cereal-master\include;SDL2_mixer-2.8.0\include;SDL2-2.30.7\include;$(IncludePath)</IncludePath>
+    <LibraryPath>SDL2_mixer-2.8.0\lib\x64;SDL2-2.30.7\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
