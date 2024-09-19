@@ -61,34 +61,63 @@ void Connection::startListening()
     char buffer[bufferSize];
     int bytesReceived;
 
-    // Clear the buffer
-    memset(buffer, 0, bufferSize);
+    
 
     // Receive data from the server
-    bytesReceived = recv(_clientSocket, buffer, bufferSize - 1, 0);
-    if (bytesReceived == SOCKET_ERROR) {
-        int errorCode = WSAGetLastError();
-        if (errorCode == WSAECONNRESET) {
-            std::cerr << "Connection reset by peer (Error code: " << errorCode << ")." << std::endl;
+    while (true) 
+    {
+        // Clear the buffer
+        memset(buffer, 0, bufferSize);
+
+        bytesReceived = recv(_clientSocket, buffer, bufferSize - 1, 0);
+        
+        if (bytesReceived == SOCKET_ERROR) {
+            int errorCode = WSAGetLastError();
+            if (errorCode == WSAECONNRESET) {
+                std::cerr << "Connection reset by peer (Error code: " << errorCode << ")." << std::endl;
+            }
+            else {
+                std::cerr << "Receive failed: " << errorCode << std::endl;
+            }
+
         }
-        else {
-            std::cerr << "Receive failed: " << errorCode << std::endl;
+
+        // Check for connection closure
+        if (bytesReceived == 0) {
+            std::cerr << "Connection closed by server." << std::endl;
+
         }
 
+        // Construct a std::string from the buffer and the number of bytes received
+        //std::cout<< std::string(buffer, bytesReceived);
+        std::string data(buffer, bytesReceived);
+        _interpreter->interpretAndExecute(data);
     }
-
-    // Check for connection closure
-    if (bytesReceived == 0) {
-        std::cerr << "Connection closed by server." << std::endl;
-
-    }
-
-    // Construct a std::string from the buffer and the number of bytes received
-    //std::cout<< std::string(buffer, bytesReceived);
-    std::string(buffer);
-    _interpreter->interpretAndExecute(buffer);
-     
 }
+
+void Connection::uninit()
+{
+    // Shutdown the connection since no more data will be sent
+    if (_clientSocket != INVALID_SOCKET)
+    {
+        int result = shutdown(_clientSocket, SD_BOTH);
+        if (result == SOCKET_ERROR) {
+            std::cout << "shutdown failed: " << WSAGetLastError() << std::endl;
+            closesocket(_clientSocket);  // Always ensure the socket is closed
+            WSACleanup();
+            return;
+        }
+
+        // Close the socket
+        closesocket(_clientSocket);
+        std::cout << "Socket closed successfully." << std::endl;
+    }
+
+    // Clean up Winsock
+    WSACleanup();
+    std::cout << "Winsock cleanup done." << std::endl;
+}
+
 
 
 

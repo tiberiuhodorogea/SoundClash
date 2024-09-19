@@ -60,4 +60,14 @@ void MusicPlayer::ResumeMusic()
     Mix_ResumeMusic();
 }
 
+void MusicPlayer::uninitMusicPlayer()
+{
+    std::cout << "Terminating music";
+    Mix_HaltMusic();
+    std::cout << "Closing the audio device";
+    Mix_CloseAudio();
+    std::cout << "Quitting SDL_mixer";
+    Mix_Quit();
+}
+
 // Mix_OpenAudioDevice schimbare device output

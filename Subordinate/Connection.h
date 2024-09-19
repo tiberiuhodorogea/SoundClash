@@ -12,7 +12,7 @@ public:
     Connection(int port, LPCWSTR ipAddress, MessageInterpreter* interpreter);
     int init();
     void startListening();
-    
+    void uninit();
 private:
     MessageInterpreter* _interpreter;
     LPCWSTR _ipAddress;

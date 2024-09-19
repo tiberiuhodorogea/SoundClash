@@ -17,7 +17,7 @@ public:
     void pauseMusic();
     void ResumeMusic();
     double getMusicPosition();
-
+    void uninitMusicPlayer();
 private:
     Mix_Music* music;
 };
