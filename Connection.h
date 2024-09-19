@@ -14,8 +14,7 @@ public:
     int init();
     void socketAccept();
     void Send(const std::string message);
-    void pauseMusic();
-    void ResumeMusic();
+    void uninit();
 private:
     SOCKET _serverSocket;
     SOCKET _acceptSocket;

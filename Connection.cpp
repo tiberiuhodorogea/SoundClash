@@ -95,3 +95,29 @@ void Connection::Send(const std::string message)
 	}
 }
 
+void Connection::uninit()
+{
+	
+		// Shutdown the connection, stopping further send/receive operations
+		if (_serverSocket != INVALID_SOCKET)
+		{
+			// Shutdown the server socket
+			int result = shutdown(_serverSocket, SD_BOTH);
+			if (result == SOCKET_ERROR) {
+				std::cout << "shutdown failed: " << WSAGetLastError() << std::endl;
+			}
+
+			// Close the socket
+			closesocket(_serverSocket);
+			std::cout << "Server socket closed successfully." << std::endl;
+
+			// Invalidate the socket so it can't be used again
+			_serverSocket = INVALID_SOCKET;
+		}
+
+		// Clean up Winsock
+		WSACleanup();
+		std::cout << "Winsock cleanup done." << std::endl;
+	
+}
+

@@ -3,7 +3,8 @@
 #include"Message.h"
 #include"LoadMessage.h"
 #include"SyncMessage.h"
-
+#include <cereal/archives/json.hpp>
+#include <cereal/types/string.hpp>
 class MessageInterpreter
 {
 private:
