@@ -6,10 +6,6 @@ LoadMessage::LoadMessage(std::string path)
 	_path = path;
 	_type = Load;
 }
-LoadMessage::LoadMessage()
-{
-	
-}
 
 std::string LoadMessage::Serialize()
 {

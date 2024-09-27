@@ -4,6 +4,7 @@
 #include <cereal/types/string.hpp>
 #include <chrono>
 #include"MusicPlayer.h"
+#include "Utils.h"
 class SyncMessage : public Message
 {
 
@@ -15,7 +16,6 @@ public:
 	SyncMessage(double songTime);
 	std::string Serialize();
 	static SyncMessage Deserialize(const std::string& JSONObject);
-	long long getRealTime();
 
 	template<class Archive>
 	void serialize(Archive& archive)

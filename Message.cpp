@@ -5,7 +5,7 @@
 #include <cereal/types/string.hpp>
 Message::Message(MessageType Type)
 {
-	_type = Type;
+	_type = Type; 
 }
 
 Message Message::Deserialize(const std::string& JSONObject)
