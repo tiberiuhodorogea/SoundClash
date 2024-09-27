@@ -5,8 +5,7 @@
 class Message 
 {
 public:
-	Message() = default;	
-	Message(MessageType Type);  //Constructor
+	Message(MessageType Type=Empty);  
 
 	static Message Deserialize(const std::string& JSONObject);
 

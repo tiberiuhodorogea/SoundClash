@@ -11,28 +11,28 @@ void MessageInterpreter::interpretAndExecute(std::string message)
     {
     case Load:
         loadMessageDefault = LoadMessage::Deserialize(message);
-        _player->loadMusic(loadMessageDefault.getPath());
+        _player->load(loadMessageDefault.getPath());
         std::cout << loadMessageDefault.getPath() << " Loaded " << std::endl;
         break;
     case Pause:
         std::cout << "Music paused" << std::endl;
-        _player->pauseMusic();
+        _player->pause();
         break;
     case Stop:
         std::cout << "Music stopped" << std::endl;
-        _player->pauseMusic();
-        _player->setMusicPosition(0);
+        _player->pause();
+        _player->setPosition(0);
         break;
         std::cout << "Exiting program" << std::endl;
     case Exit:
         break;
     case Resume:
         std::cout << "Resuming..." << std::endl;
-        _player->ResumeMusic();
+        _player->Resume();
         break;
     case Play:
         std::cout << "playing...";
-        _player->playMusic();
+        _player->play();
         break;
     case Sync:
         std::cout << "This feature is not implemented yet!" << std::endl;

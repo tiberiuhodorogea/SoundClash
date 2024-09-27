@@ -11,16 +11,16 @@ class MusicPlayer {
 public:
     MusicPlayer();
     ~MusicPlayer();
-    void loadMusic(const std::string& filePath);
-    void playMusic(int loops = -1);
-    void setMusicPosition(double seconds);
-    double getMusicPosition();
-    void pauseMusic();
-    void ResumeMusic();
-    void uninitMusicPlayer();
+    void load(const std::string& filePath);
+    void play(int loops = -1);
+    void setPosition(double seconds);
+    void pause();
+    void Resume();
+    double getPosition();
+    void uninit();
 
 private:
-    Mix_Music* music;
+    Mix_Music* _music;
 };
 
 #endif // MUSICPLAYER_H

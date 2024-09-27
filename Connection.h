@@ -10,17 +10,18 @@
 
 class Connection {
 public:
-    Connection(int port, LPCWSTR ipAddress,MusicPlayer player);
+    Connection(int port, LPCWSTR ipAddress);
     int init();
     void socketAccept();
     void Send(const std::string message);
     void uninit();
 private:
+    int _port;
     SOCKET _serverSocket;
     SOCKET _acceptSocket;
     LPCWSTR _ipAddress;
     MusicPlayer _player;
-    int _port;
+    
 };
 
 

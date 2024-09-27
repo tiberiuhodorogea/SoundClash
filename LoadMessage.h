@@ -9,10 +9,10 @@ class LoadMessage : public Message
 private:
 	std::string _path;
 public:
-	LoadMessage();
+
 	LoadMessage(std::string path); //Constructor
 	std::string Serialize();
-
+	static LoadMessage Deserialize(const std::string& JSONObject);
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
@@ -20,5 +20,5 @@ public:
 	}
 	std::string getPath();
 
-	static LoadMessage Deserialize(const std::string& JSONObject);
+	
 };

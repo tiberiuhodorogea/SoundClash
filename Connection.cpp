@@ -1,10 +1,9 @@
 #include "Connection.h"
 
-Connection::Connection(int port, LPCWSTR ipAddress,MusicPlayer player)
+Connection::Connection(int port, LPCWSTR ipAddress)
 {
 	_port = port;
 	_ipAddress = ipAddress;
-	_player = player;
 }
 
 int Connection::init()

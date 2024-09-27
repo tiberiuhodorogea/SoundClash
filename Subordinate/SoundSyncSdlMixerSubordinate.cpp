@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     //initializing
     MusicPlayer player;
     MessageInterpreter interpreter(&player);
-    Connection connectionSubordinate(55555, L"127.0.0.1",&interpreter);
+    Connection connectionSubordinate(5555, L"192.168.0.197",&interpreter);
     connectionSubordinate.init();
     connectionSubordinate.startListening();
 
@@ -31,6 +31,6 @@ int main(int argc, char* argv[])
 
     //Uninitializing
     connectionSubordinate.uninit();
-    player.uninitMusicPlayer();
+    player.uninit();
 	return 0;
 }

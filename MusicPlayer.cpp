@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 
-MusicPlayer::MusicPlayer() : music(nullptr) {
+MusicPlayer::MusicPlayer() : _music(nullptr) {
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
         std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
         throw std::runtime_error("SDL initialization failed");
@@ -16,51 +16,51 @@ MusicPlayer::MusicPlayer() : music(nullptr) {
 }
 
 MusicPlayer::~MusicPlayer() {
-    if (music) {
-        Mix_FreeMusic(music);
+    if (_music) {
+        Mix_FreeMusic(_music);
     }
     Mix_CloseAudio();
     SDL_Quit();
 }
 
-void MusicPlayer::loadMusic(const std::string& filePath) {
-    music = Mix_LoadMUS(filePath.c_str());
-    if (!music) {
+void MusicPlayer::load(const std::string& filePath) {
+    _music = Mix_LoadMUS(filePath.c_str());
+    if (!_music) {
         std::cerr << "Error loading music: " << Mix_GetError() << std::endl;
         throw std::runtime_error("Music loading failed");
     }
 }
 
-void MusicPlayer::playMusic(int loops) {
-    if (Mix_PlayMusic(music, loops) == -1) {
+void MusicPlayer::play(int loops) {
+    if (Mix_PlayMusic(_music, loops) == -1) {
         std::cerr << "Error playing music: " << Mix_GetError() << std::endl;
         throw std::runtime_error("Music playback failed");
     }
 }
 
-void MusicPlayer::setMusicPosition(double seconds) {
+void MusicPlayer::setPosition(double seconds) {
     if (Mix_SetMusicPosition(seconds) == -1) {
         std::cerr << "Error setting music position: " << Mix_GetError() << std::endl;
         throw std::runtime_error("Music position setting failed");
     }
 }
 
-double MusicPlayer::getMusicPosition()
-{
-    return Mix_GetMusicPosition(music);
-        
-}
-void MusicPlayer::pauseMusic()
+void MusicPlayer::pause()
 {
     Mix_PauseMusic();
 }
 
-void MusicPlayer::ResumeMusic()
+void MusicPlayer::Resume()
 {
     Mix_ResumeMusic();
 }
 
-void MusicPlayer::uninitMusicPlayer()
+double MusicPlayer::getPosition()
+{
+    return Mix_GetMusicPosition(_music);
+
+}
+void MusicPlayer::uninit()
 {
     std::cout << "Terminating music";
     Mix_HaltMusic();
@@ -69,5 +69,4 @@ void MusicPlayer::uninitMusicPlayer()
     std::cout << "Quitting SDL_mixer";
     Mix_Quit();
 }
-
 // Mix_OpenAudioDevice schimbare device output

@@ -16,11 +16,12 @@
 #include"Connection.h"
 using namespace std::chrono_literals;
 
+
 int main(int argc, char* argv[]) 
 {
     //initializing
     MusicPlayer player;
-    Connection connectionMaster(5555, L"192.168.0.196", player);
+    Connection connectionMaster(5555, L"192.168.0.196");
     connectionMaster.init();
     connectionMaster.socketAccept();
 
@@ -36,7 +37,7 @@ int main(int argc, char* argv[])
         if (command == "load")
         {
             std::cin >> command;
-            player.loadMusic(command);
+            player.load(command);
             LoadMessage toSend(command);
             messageSerialized = toSend.Serialize();
             connectionMaster.Send(messageSerialized);
@@ -47,15 +48,15 @@ int main(int argc, char* argv[])
             Message toSend(Play);
             messageSerialized = toSend.Serialize();
             connectionMaster.Send(messageSerialized);
-            player.playMusic();
+            player.play();
         }
         else if(command == "stop")
         {
             Message toSend(Stop);
             messageSerialized = toSend.Serialize();
             connectionMaster.Send(messageSerialized);
-            player.pauseMusic();
-            player.setMusicPosition(0);
+            player.pause();
+            player.setPosition(0);
 
         }
         else if (command == "pause")
@@ -63,7 +64,7 @@ int main(int argc, char* argv[])
             Message toSend(Pause);
             messageSerialized = toSend.Serialize();
             connectionMaster.Send(messageSerialized);
-            player.pauseMusic();
+            player.pause();
         }
         else if (command == "exit")
         {
@@ -88,18 +89,6 @@ int main(int argc, char* argv[])
 
     //Uninitializing
     connectionMaster.uninit();
-    player.uninitMusicPlayer();
-
-   //if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-   //     printf("Failed to initialize SDL: %s\n", SDL_GetError());
-   //     return -1;
-   // }
-
-   // if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-   //     printf("Failed to initialize SDL_mixer: %s\n", Mix_GetError());
-   //     SDL_Quit();
-   //     return -1;
-   // }
-   // listAudioDevices();
+    player.uninit();
 	return 0;
 }
